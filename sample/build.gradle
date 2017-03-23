@@ -1,0 +1,35 @@
+apply plugin: 'com.android.application'
+apply plugin: 'com.jakewharton.butterknife'
+
+android {
+    compileSdkVersion 25
+    buildToolsVersion "25.0.2"
+
+    defaultConfig {
+        applicationId "com.prolificinteractive.materialcalendarview.sample"
+        minSdkVersion 19
+        targetSdkVersion 25
+        versionCode project.ext.versionCodeInt
+        versionName version
+    }
+
+    lintOptions {
+        abortOnError false
+    }
+}
+
+dependencies {
+    // You should use the commented out line below in you're application.
+    // We depend on the source directly here so that development is easier.
+    compile project(':library')
+    //compile 'com.prolificinteractive:material-calendarview:1.4.0'
+
+    compile 'com.android.support:appcompat-v7:25.0.1'
+    compile 'com.android.support:recyclerview-v7:25.0.1'
+
+    compile 'com.readystatesoftware.systembartint:systembartint:1.0.4'
+
+    compile 'com.jakewharton:butterknife:8.5.1'
+    annotationProcessor 'com.jakewharton:butterknife-compiler:8.5.1'
+
+}
