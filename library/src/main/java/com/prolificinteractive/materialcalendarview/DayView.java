@@ -209,7 +209,11 @@ class DayView extends CheckedTextView {
         } else if (isMiddle) {
             setTextColor(Color.BLACK);
         } else {
-            setTextColor(Color.BLACK);
+            if (date.isAfter(CalendarDay.today())) {
+                setTextColor(Color.parseColor("#666666"));
+            } else {
+                setTextColor(Color.BLACK);
+            }
         }
 
         super.onDraw(canvas);
@@ -242,7 +246,11 @@ class DayView extends CheckedTextView {
         } else if (isMiddle) {
             setTextColor(Color.BLACK);
         } else {
-            setTextColor(Color.BLACK);
+//            if (date.isAfter(CalendarDay.today())) {
+                setTextColor(Color.parseColor("#666666"));
+//            } else {
+//                setTextColor(Color.BLACK);
+//            }
         }
     }
 
