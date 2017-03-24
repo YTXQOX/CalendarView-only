@@ -1565,9 +1565,11 @@ public class MaterialCalendarView extends ViewGroup {
 //                Date dateNow = DateFormatUtil.convertStr2Date(DateFormatUtil.getCurrentDate(DateFormatUtil.sdfDate10), DateFormatUtil.sdfDate10);
 //                Date dateSelected = DateFormatUtil.convertStr2Date(DateFormatUtil.getDate(date.getDate(), DateFormatUtil.sdfDate10), DateFormatUtil.sdfDate10);
                 if (date.isAfter(CalendarDay.today())) {
-                    Toast.makeText(getContext(), "所选日期超出当前，不可选择", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), "所选日期超出当前，默认选择当前日期", Toast.LENGTH_SHORT).show();
 //                    Toast.makeText(getContext(), "胖胖说不可点击\n" + date.toString(), Toast.LENGTH_SHORT).show();
-                    return;
+//                    return;
+
+                    date = CalendarDay.today();
                 }
 
                 adapter.setDateSelected(date, nowSelected);
