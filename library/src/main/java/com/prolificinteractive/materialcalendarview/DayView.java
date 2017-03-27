@@ -51,6 +51,8 @@ class DayView extends CheckedTextView {
     @ShowOtherDates
     private int showOtherDates = MaterialCalendarView.SHOW_DEFAULTS;
 
+    private boolean isSingle = false;
+
 
     public DayView(Context context, CalendarDay day) {
         super(context);
@@ -212,7 +214,11 @@ class DayView extends CheckedTextView {
             if (date.isAfter(CalendarDay.today())) {
                 setTextColor(Color.parseColor("#666666"));
             } else {
-                setTextColor(Color.BLACK);
+                if (isSingle) {
+                    setTextColor(Color.WHITE);
+                } else {
+                    setTextColor(Color.BLACK);
+                }
             }
         }
 
@@ -239,19 +245,19 @@ class DayView extends CheckedTextView {
             setBackgroundDrawable(mCircleDrawable);
         }
 
-        if (isFirst) {
-            setTextColor(Color.WHITE);
-        } else if (isLast) {
-            setTextColor(Color.WHITE);
-        } else if (isMiddle) {
-            setTextColor(Color.BLACK);
-        } else {
-//            if (date.isAfter(CalendarDay.today())) {
-                setTextColor(Color.parseColor("#666666"));
-//            } else {
-//                setTextColor(Color.BLACK);
-//            }
-        }
+//        if (isSingle) {
+//            setTextColor(Color.WHITE);
+//        } else {
+            if (isFirst) {
+                setTextColor(Color.WHITE);
+            } else if (isLast) {
+                setTextColor(Color.WHITE);
+            } else if (isMiddle) {
+                setTextColor(Color.BLACK);
+            } else {
+            }
+//        }
+
     }
 
     private static Drawable generateBackground(int color, int fadeTime, Rect bounds, boolean isFirst, boolean isLast, boolean isMiddle) {
@@ -291,6 +297,10 @@ class DayView extends CheckedTextView {
     public void setChecked(boolean checked) {
         super.setChecked(checked);
         regenerateBackground();
+    }
+
+    public void setSingle(boolean isSingle) {
+        this.isSingle = isSingle;
     }
 
     private static Drawable generateCircleDrawable(final int color) {
@@ -414,6 +424,12 @@ class DayView extends CheckedTextView {
     private boolean isLast;
     private boolean isMiddle;
 
+    public void setNormal() {
+        this.isFirst = false;
+        this.isLast = false;
+        this.isMiddle = false;
+    }
+
     public void setFirst() {
         this.isFirst = true;
         this.isLast = false;
@@ -423,12 +439,6 @@ class DayView extends CheckedTextView {
     public void setLast() {
         this.isFirst = false;
         this.isLast = true;
-        this.isMiddle = false;
-    }
-
-    public void setNormal() {
-        this.isFirst = false;
-        this.isLast = false;
         this.isMiddle = false;
     }
 

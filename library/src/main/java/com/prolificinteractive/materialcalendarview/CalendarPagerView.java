@@ -174,6 +174,7 @@ abstract class CalendarPagerView extends ViewGroup implements View.OnClickListen
     public void setSelectedDates(Collection<CalendarDay> dates) {
         if (dates == null || dates.size() == 0) {
             for (DayView dayView : dayViews) {
+                dayView.setSingle(false);
                 dayView.setChecked(false);
             }
             return;
@@ -186,9 +187,17 @@ abstract class CalendarPagerView extends ViewGroup implements View.OnClickListen
         CalendarDay lastSelectedDate = calendarDays[dates.size() - 1];
 
         for (DayView dayView : dayViews) {
+            boolean isSingle = false;
+
             CalendarDay day = dayView.getDate();
             boolean checked = dates != null && dates.contains(day);
             dayView.setNormal();
+
+            if(1 == dates.size() & day.equals(firstSelectedDate)) {
+                isSingle = true;
+            }
+            dayView.setSingle(isSingle);
+
             if (checked & startFlag) {
                 if (day.equals(firstSelectedDate)) {
                     dayView.setFirst();
@@ -198,7 +207,10 @@ abstract class CalendarPagerView extends ViewGroup implements View.OnClickListen
                     dayView.setMiddle();
                 }
             }
+
             dayView.setChecked(checked);
+//            isSingle = false;
+//            dayView.setSingle(isSingle);
         }
 //        if ((CalendarPagerAdapter.calendarDay0 != null) && (CalendarPagerAdapter.calendarDay0.toString().equals(this.date.toString())) ||
 //                (CalendarPagerAdapter.calendarDayLast != null) && (CalendarPagerAdapter.calendarDayLast.toString().equals(this.date.toString()))) {
