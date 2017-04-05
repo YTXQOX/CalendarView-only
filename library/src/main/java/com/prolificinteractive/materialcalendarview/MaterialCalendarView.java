@@ -366,7 +366,7 @@ public class MaterialCalendarView extends ViewGroup {
             buttonYearFuture.setImageDrawable(getResources().getDrawable(R.mipmap.ic_action_next_year));
 
 //            setSelectionColor(a.getColor(R.styleable.MaterialCalendarView_mcv_selectionColor, getThemeAccentColor(context)));
-            setSelectionColor(Color.parseColor("#3b87ee"));
+            setSelectionColor(Color.parseColor("#0366c1"));
 
             CharSequence[] array = a.getTextArray(R.styleable.MaterialCalendarView_mcv_weekDayLabels);
             if (array != null) {
